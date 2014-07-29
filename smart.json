@@ -2,6 +2,7 @@
   "packages": {
     "iron-router": {},
     "bootstrap-3": {},
-    "font-awesome": {}
+    "font-awesome": {},
+    "VazcoMaps": {}
   }
 }
