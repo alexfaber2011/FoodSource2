@@ -5,7 +5,8 @@
       "iron-router": {},
       "bootstrap-3": {},
       "font-awesome": {},
-      "VazcoMaps": {}
+      "VazcoMaps": {},
+      "accounts-ui-bootstrap-3": {}
     },
     "packages": {
       "iron-router": {
@@ -27,6 +28,11 @@
         "git": "https://github.com/vazco/meteor-vazco-maps.git",
         "tag": "v0.0.1",
         "commit": "d0426e22687cd283bfce970c808a1fbaa0a131f0"
+      },
+      "accounts-ui-bootstrap-3": {
+        "git": "https://github.com/mangasocial/meteor-accounts-ui-bootstrap-3.git",
+        "tag": "v0.3.3",
+        "commit": "2e50b605d8d5ed68e48c4529a65f13552d8af3f9"
       },
       "blaze-layout": {
         "git": "https://github.com/EventedMind/blaze-layout.git",

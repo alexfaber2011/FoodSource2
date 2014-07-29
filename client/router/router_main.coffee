@@ -6,3 +6,6 @@ Router.configure
 Router.map ->
   @route "main",
     path: "/"
+		
+	@route "login", 
+		path: "login"
