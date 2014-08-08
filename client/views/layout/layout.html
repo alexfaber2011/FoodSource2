@@ -1,4 +1,8 @@
 <template name="layout">
-    <!-- TODO: header here, fix this weird layout thing -->
-    {{> yield}}
+  <div class="container">
+		{{> header}}
+    <div id="main" class="row-fluid">
+      {{> yield}}
+    </div>
+  </div>
 </template>

@@ -7,5 +7,4 @@ Router.map ->
   @route "main",
     path: "/"
 		
-	@route "login", 
-		path: "login"
+	# @route "login"
