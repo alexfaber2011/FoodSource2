@@ -1,8 +1,10 @@
 Router.configure
   layoutTemplate: "layout"
-#  notFoundTemplate: "notfound"
-#  loadingTemplate: "loading"
 
 Router.map ->
-  @route "main",
-    path: "/"
+  @route "test",
+    path: "test"
+
+  #TODO move this to a better spot (temp)
+  @route "map",
+    path: "map"
