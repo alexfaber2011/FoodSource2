@@ -4,7 +4,8 @@ Router.configure
 #  loadingTemplate: "loading"
 
 Router.map ->
-  @route "main",
-    path: "/"
+  # @route "login",
+  #   path: "/"
 		
-	# @route "login"
+	@route "login", 
+		path: "/"

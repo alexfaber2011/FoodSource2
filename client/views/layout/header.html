@@ -1,18 +1,22 @@
-<!-- <template name="header">
-  <header class="navbar">
-    <div class="navbar-inner">
-      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </a>
-				Microscope
-      <div class="nav-collapse collapse">
-        <ul class="nav pull-right">
-          <li>{{> loginButtons}}</li>
-				</ul>
-			</div>
-    </div>
-  </header>
-</template> -->
+<template name="header">
+	<div class="navbar navbar-default" role="navigation">
+	    <div class="navbar-header">
+	        <a class="navbar-brand" href="#">FoodSource</a>
+	        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+	            <span class="sr-only">Toggle navigation</span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	        </button>
+	    </div>
+	    <div class="navbar-collapse collapse">
+	        <ul class="nav navbar-nav">
+	            <li class="active"><a href="http://wwwwwwwww.jodi.org/">Pen Island</a></li>
+	        </ul>
+	        <ul class="nav navbar-nav navbar-right">
+	            {{ > loginButtons }} <!-- here -->
+	        </ul>
+	    </div>
+	</div>
+</template>
 

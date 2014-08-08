@@ -12,6 +12,5 @@ coffeescript
 font-awesome
 VazcoMaps
 underscore
-accounts-base
+accounts-ui-bootstrap-3
 accounts-password
-bootstrap
