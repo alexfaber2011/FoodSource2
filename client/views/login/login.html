@@ -1,10 +1,21 @@
 <template name="login">
 	<div class="container-fluid">
-		<div class="col-md-6">
-			{{ > indexOfferedMeals }}
+		<div class="row">
+			<div class="col-md-6">
+				{{ > indexOfferedMeals }}
+			</div>
+			<div class="col-md-6">
+				{{ > indexRequestedMeals }}
+			</div>
 		</div>
-		<div class="col-md-6">
-			{{ > indexRequestedMeals }}
+		
+		<div class="row">
+			<div class="col-md-6">
+				{{ > createOfferedMeal }}
+			</div>
+			<div class="col-md-6">
+				{{ > createRequestedMeal }}
+			</div>
 		</div>
 	</div>
 </template>
