@@ -1,1 +1,1 @@
-RequestedMeals = new Meteor.collection('RequestedMeals');
+RequestedMeals = new Meteor.Collection('RequestedMeals');
