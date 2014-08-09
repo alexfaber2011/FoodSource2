@@ -1,6 +1,10 @@
-Template.createRequestedMeal.events = {
-	'click input.add': function () {
-		var foodName = document.getElementById("foodName").value;
-		RequestedMeals.insert({name: foodName });
+Template.createRequestedMeal.events({
+	'submit form': function(event) {
+		event.preventDefault();
+		
+		var food = { name: $(event.target).find('[id=foodName]').val() }
+
+		RequestedMeals.insert(food);
+		
 	}
-};
+});
