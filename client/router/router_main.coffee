@@ -4,9 +4,8 @@ Router.configure
 #  loadingTemplate: "loading"
 
 Router.map ->
-  # @route "login",
-  #   path: "/"
-		
-	@route "login", 
-		path: "/"
-		
+  @route "main",
+    path: "/"
+    data: ->
+      Meteor.subscribe "OfferedMeals"
+      Meteor.subscribe "RequestedMeals"
