@@ -1,5 +1,3 @@
-@map
-
 Template.map.rendered = ->
   tmpl = this
   VazcoMaps.init {}, ->
@@ -12,7 +10,13 @@ Template.map.rendered = ->
       zoom: 14
     )
 
-    map = tmpl.newMap2
+    #Add offered meals
+    offeredMeals = OfferedMeals.find();
+    offeredMeals.observe
+      added: (document) ->
+        tmpl.newMap2.addMarker
+          lat: document.lat
+          lng: document.lng
 
   #Size the map properly
   window_height = $(window).height()
@@ -23,11 +27,6 @@ Template.map.rendered = ->
     window_height = $(window).height()
     $("#map-canvas2").height(window_height)
   )
-
-#  #add market (test)
-  map.newMap2.addMarker
-    lat: 43.0667
-    lng: -89.4000
 
 Template.map.helpers
 
