@@ -1,4 +1,25 @@
+displayModal = (title) ->
+  console.log "[displayModal] called"
+  modalInfo =
+    template: Template.modalInfo
+    title: title
+#    modalDialogClass: "share-modal-dialog" #optional
+#    modalBodyClass: "share-modal-body" #optional
+#    modalFooterClass: "share-modal-footer" #optional
+    buttons:
+      cancel:
+        class: "btn-danger"
+        label: "Cancel"
+      ok:
+        closeModalOnClick: false # if this is false, dialog doesnt close automatically on click
+        class: "btn-info"
+        label: "Ok"
+
+  rd = ReactiveModal.initDialog(modalInfo)
+  rd.show()
+
 Template.map.rendered = ->
+  Session.setDefault "isOfferedMarker", no
   tmpl = this
   VazcoMaps.init {}, ->
     tmpl.mapEngine = VazcoMaps.gMaps()
@@ -17,6 +38,12 @@ Template.map.rendered = ->
         tmpl.newMap2.addMarker
           lat: document.lat
           lng: document.lng
+          click: ->
+            Session.set "markerLng", (@.position.B).toFixed(2)
+            Session.set "markerLat", (@.position.k).toFixed(2)
+            Session.set "isOfferedMarker", yes
+            displayModal "Offered Meals"
+
 
   #Size the map properly
   window_height = $(window).height()

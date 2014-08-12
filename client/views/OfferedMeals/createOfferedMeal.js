@@ -5,8 +5,8 @@ Template.createOfferedMeal.events({
         //#TODO: convert this to autoform; add validation
 		var food = {
             name: $(event.target).find('[id=foodName]').val(),
-            lat: $(event.target).find('[id=lat]').val(),
-            lng: $(event.target).find('[id=lng]').val()
+            lat: accounting.toFixed($(event.target).find('[id=lat]').val(), 2),
+            lng: accounting.toFixed($(event.target).find('[id=lng]').val(), 2)
         }
 
 		OfferedMeals.insert(food);
