@@ -14,3 +14,5 @@ VazcoMaps
 underscore
 accounts-ui-bootstrap-3
 accounts-password
+geocoder
+http
