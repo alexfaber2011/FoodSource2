@@ -15,8 +15,8 @@ Template.createOfferedMeal.events({
 				}
 				else {
 					console.log(geocoded);
-					var lat = geocoded.data.results[0].geometry.location.lat;
-					var lng = geocoded.data.results[0].geometry.location.lng;
+					var lat = accounting.toFixed(geocoded.data.results[0].geometry.location.lat, 10);
+					var lng = accounting.toFixed(geocoded.data.results[0].geometry.location.lng, 10);
 					var food = { name: $(event.target).find('[id=foodName]').val(), lat: lat, lng: lng };
 					OfferedMeals.insert(food);
 				}

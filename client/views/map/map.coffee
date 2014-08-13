@@ -38,9 +38,11 @@ Template.map.rendered = ->
         tmpl.newMap2.addMarker
           lat: document.lat
           lng: document.lng
-          click: ->
-            Session.set "markerLng", (@.position.B).toFixed(2)
-            Session.set "markerLat", (@.position.k).toFixed(2)
+          click: (marker) ->
+            Session.set "markerLng", accounting.toFixed(marker.getPosition().lng(), 10)
+            Session.set "markerLat", accounting.toFixed(marker.getPosition().lat(), 10)
+#            Session.set "markerLng", accounting.toFixed(@.position.B, 6)
+#            Session.set "markerLat", accounting.toFixed(@.position.k, 6)
             Session.set "isOfferedMarker", yes
             displayModal "Offered Meals"
 
