@@ -36,6 +36,7 @@ Template.map.rendered = ->
     offeredMeals.observe
       added: (document) ->
         tmpl.newMap2.addMarker
+          icon: 'food.png'
           lat: document.lat
           lng: document.lng
           click: ->
@@ -43,6 +44,20 @@ Template.map.rendered = ->
             Session.set "markerLat", (@.position.k).toFixed(2)
             Session.set "isOfferedMarker", yes
             displayModal "Offered Meals"
+						
+    #Add requested meals
+    requestedMeals = RequestedMeals.find();
+    requestedMeals.observe
+      added: (document) ->
+        tmpl.newMap2.addMarker
+          icon: 'fork.png'
+          lat: document.lat
+          lng: document.lng
+          click: ->
+            Session.set "markerLng", (@.position.B).toFixed(2)
+            Session.set "markerLat", (@.position.k).toFixed(2)
+            Session.set "isRequestedMarker", yes
+            displayModal "Requested Meals"
 
 
   #Size the map properly
