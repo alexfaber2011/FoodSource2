@@ -1,18 +1,12 @@
 Router.configure
-  layoutTemplate: "layout"
+  # layoutTemplate: "layout"
 #  notFoundTemplate: "notfound"
 #  loadingTemplate: "loading"
 
 Router.map ->
-  @route "main",
+  @route "map",
     path: "/"
     data: ->
       Meteor.subscribe "OfferedMeals"
       Meteor.subscribe "RequestedMeals"  
-  
-  @route "test",
-    path: "test"
-
-  #TODO move this to a better spot (temp)
-  @route "map",
-    path: "map"
+	
