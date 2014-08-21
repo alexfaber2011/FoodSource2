@@ -7,6 +7,8 @@
     "accounts-ui-bootstrap-3": {},
     "bootboxjs": {},
     "reactive-modal": {},
-    "accounting": {}
+    "accounting": {},
+    "collection2": {},
+    "autoform": {}
   }
 }
