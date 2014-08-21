@@ -2,25 +2,26 @@
 
 AutoForm.hooks
   insertOfferedMealsForm:
-    onSubmit: (doc) ->
-      console.log doc
-      HTTP.get "https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyCbB-_YPraSIeF3_J4dcKahG77KLdY5G64&address=" + doc.address, (error, geocoded) ->
-        if error
-          console.log error
-          throw new Meteor.Error(500)
-        else
-#            console.log geocoded
-          lat = parseFloat(accounting.toFixed(geocoded.data.results[0].geometry.location.lat, 10))
-          lng = parseFloat(accounting.toFixed(geocoded.data.results[0].geometry.location.lng, 10))
-          if lat then Session.set "docLat", lat
-          if lng then Session.set "docLng", lng
-      lat = Session.get "docLat"
-      lng = Session.get "docLng"
-      if lat and lng
-        doc.lat = lat
-        doc.lng = lng
+    before:
+      insert: (doc) ->
         console.log doc
-        return doc
+        HTTP.get "https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyCbB-_YPraSIeF3_J4dcKahG77KLdY5G64&address=" + doc.address, (error, geocoded) ->
+          if error
+            console.log error
+            throw new Meteor.Error(500)
+          else
+  #            console.log geocoded
+            lat = parseFloat(accounting.toFixed(geocoded.data.results[0].geometry.location.lat, 10))
+            lng = parseFloat(accounting.toFixed(geocoded.data.results[0].geometry.location.lng, 10))
+            if lat then Session.set "docLat", lat
+            if lng then Session.set "docLng", lng
+        lat = Session.get "docLat"
+        lng = Session.get "docLng"
+        if lat and lng
+          doc.lat = lat
+          doc.lng = lng
+          console.log doc
+          return doc
 
 Template.createOfferedMeal.rendered = ->
 
