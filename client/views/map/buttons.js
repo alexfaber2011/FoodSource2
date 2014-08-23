@@ -2,22 +2,22 @@ displayModal = function() {
 	var modalInfo, rd;
 	modalInfo = {
 		template: Template.createOfferedMeal, 
-		title: "Offer a meal", 
-		buttons: {
-			cancel: {
-				"class": "btn-danger", 
-				label: "Cancel"
-			},
-			ok: {
-				closeOnModalClick: false, 
-				"class": "btn-info", 
-				label: "Create"
-			}
-		}
+		title: "Offer a meal"
+//		buttons: {
+//			cancel: {
+//				"class": "btn-danger",
+//				label: "Cancel"
+//			},
+//			ok: {
+//				closeOnModalClick: false,
+//				"class": "btn-info",
+//				label: "Create"
+//			}
+//		}
 	};
 	rd = ReactiveModal.initDialog(modalInfo);
 	rd.show();
-}
+};
 
 Template.buttons.events({
 	
