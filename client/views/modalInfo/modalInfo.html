@@ -1,9 +1,10 @@
 <template name="modalInfo">
     {{#each meals}}
         <div class="well">
-            <h4>{{name}}</h4>
-            <p>Latitude: {{lat}}</p>
-            <p>Longitude: {{lng}}</p>
+            <h3>{{name}}</h3>
+            <hr />
+            <p><span class="bold">Description</span><br />{{description}}</p>
+            <p><span class="bold">Number of Servings: </span>{{numOfServings}}</p>
         </div>
     {{/each}}
 </template>
