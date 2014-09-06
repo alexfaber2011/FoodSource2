@@ -62,7 +62,7 @@ Template.meal.helpers
   collection: ->
     mealId = Session.get "mealId"
     if mealId
-      Claims.find(mealId: mealId)
+      Claims.find("meal._id": mealId)
 
   remainingServings: ->
     mealId = Session.get "mealId"

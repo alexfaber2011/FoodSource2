@@ -61,6 +61,40 @@ Template.profile.helpers
       console.log user
       return user
 
+  claims: ->
+    Claims.find
+      "user._id": Meteor.userId()
+
+  claimsSettings: ->
+    rowsPerPage: 10
+    showFilter: yes
+    showNavigation: yes
+    useFontAwesome: yes
+    fields: [
+      {
+        key: "approved"
+        label: "Approved"
+        fn: (value) ->
+          if value
+            Spacebars.SafeString("<i class='fa fa-check'>")
+          else
+            Spacebars.SafeString("<i class='fa fa-times'>")
+      }
+      {
+        key: "meal.chefName"
+        label: "Chef Username"
+      }
+      {
+        key: "meal.name"
+        label: "Dish"
+      }
+      {
+        key: "meal.address"
+        label: "Address"
+      }
+    ]
+
+
 
 Template.profile.events
   "click .reactive-table tr": (event) ->

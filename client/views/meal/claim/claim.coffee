@@ -12,13 +12,19 @@ Template.claim.events
 #    console.log numOfServings
 #    console.log note
 
-    mealId = Session.get("mealId")
+    meal = OfferedMeals.findOne(_id: Session.get("mealId"))
     user = Meteor.user()
     chefId = Session.get("chefId")
 
-    if mealId and user and chefId
+    if meal and user and chefId
       Claims.insert
-        mealId: mealId
+        meal:
+          _id: meal._id
+          name: meal.name
+          address: meal.address
+          chefName: meal.userName
+          description: meal.description
+        userId: user._id
         user: user
         chefId: chefId
         servings: numOfServings

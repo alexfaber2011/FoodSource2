@@ -32,11 +32,37 @@
                         </h1>
                         <hr />
                         <h3>{{profile.address}}</h3>
+                        <p><span class="bold">Specialty: </span>{{profile.specialty}}</p>
                         {{/with}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row top-container">
+            <div class="col-sm-8 col-sm-offset-4">
+                <div class="portlet">
+                    <div class="title">
+                        Meals
+                    </div>
+                    <div class="content">
                         {{> reactiveTable collection=collection settings=settings}}
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="row top-container">
+            {{#if ownsPage}}
+            <div class="col-sm-8 col-sm-offset-4">
+                <div class="portlet">
+                    <div class="title">
+                        Claims
+                    </div>
+                    <div class="content">
+                        {{> reactiveTable collection=claims settings=claimsSettings}}
+                    </div>
+                </div>
+            </div>
+            {{/if}}
         </div>
         <div class="row top-container">
             {{#if ownsPage}}
