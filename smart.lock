@@ -12,7 +12,8 @@
       "accounting": {},
       "collection2": {},
       "autoform": {},
-      "reactive-table": {}
+      "reactive-table": {},
+      "alertfy": {}
     },
     "packages": {
       "iron-router": {
@@ -69,6 +70,11 @@
         "git": "https://github.com/ecohealthalliance/reactive-table.git",
         "tag": "v0.3.21",
         "commit": "7068f1011b46b6312bd8c21c2d3b91d4e3cbcd59"
+      },
+      "alertfy": {
+        "git": "https://github.com/cristiandley/Alertfy.git",
+        "tag": "v0.0.2",
+        "commit": "e412bf2b6e8f39737f86c2ac8cce37116c3e3ab8"
       },
       "iron-layout": {
         "git": "https://github.com/EventedMind/iron-layout.git",

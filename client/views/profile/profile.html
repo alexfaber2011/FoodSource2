@@ -24,22 +24,33 @@
                         Information
                     </div>
                     <div class="content">
-                        <h1>Alex Faber (alex)
+                        {{#with user}}
+                        <h1> {{profile.name}} ({{username}})
                             <span style="text-align: right !important; float: right;">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-o"></i>
+                                {{showStars profile.rating}}
                             </span>
                         </h1>
                         <hr />
-                        <h2>20 North Broom Street</h2>
-                        <h3>Madison, WI 53703</h3>
+                        <h3>{{profile.address}}</h3>
+                        {{/with}}
                         {{> reactiveTable collection=collection settings=settings}}
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="row top-container">
+            {{#if ownsPage}}
+            <div class="col-sm-8 col-sm-offset-4">
+                <div class="portlet">
+                    <div class="title">
+                        Edit Information
+                    </div>
+                    <div class="content">
+                        {{> editProfile}}
+                    </div>
+                </div>
+            </div>
+            {{/if}}
         </div>
     </div>
 </template>

@@ -47,6 +47,13 @@ Template.profile.helpers
     OfferedMeals.find
       userId: Meteor.userId()
 
+  ownsPage: ->
+    Session.get "ownsPage"
+
+  user: ->
+    Meteor.user()
+
+
 Template.profile.events
   "click .reactive-table tr": (event) ->
     console.log "row: ", @

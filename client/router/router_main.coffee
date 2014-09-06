@@ -18,6 +18,12 @@ Router.map ->
     path: "/"
 
   @route "profile",
-    path: "/profile"
+    path: "/profile/:id"
+    onBeforeAction: ->
+      if @params.id is Meteor.userId()
+        #Allow the user to edit their info
+        Session.set "ownsPage", yes
+      else
+        Session.set "ownsPage", no
     data: ->
       Meteor.subscribe "OfferedMeals"
