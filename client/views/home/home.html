@@ -1,3 +1,15 @@
 <template name="home">
-    <h2>Home</h2>
+    <div id="welcome" class="section">
+        <div id="login">
+            {{> loginButtons}}
+        </div>
+        <h1>Welcome to FoodSource</h1>
+        <h4>Hyper Local Food Market</h4>
+        {{#if isLoggedIn}}
+            <a href="{{pathFor 'map'}}"><button id="discover-meals" class="btn btn-default">DISCOVER MEALS</button></a>
+        {{/if}}
+    </div>
+    <div class="section">
+        <h2>Test 2</h2>
+    </div>
 </template>

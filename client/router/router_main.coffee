@@ -1,5 +1,5 @@
 Router.configure
-  # layoutTemplate: "layout"
+  layoutTemplate: "layout"
 #  notFoundTemplate: "notfound"
 #  loadingTemplate: "loading"
 
