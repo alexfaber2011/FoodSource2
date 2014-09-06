@@ -19,45 +19,108 @@ Template.meal.helpers
     showFilter: yes
     showNavigation: yes
     useFontAwesome: yes
-    fields: [
-      {
-        key: "approved"
-        label: "Approved"
-        fn: (value) ->
-          if value
-            Spacebars.SafeString("<i class='fa fa-check'>")
-          else
-            Spacebars.SafeString("<i class='fa fa-times'>")
-      }
-      {
-        key: "servings"
-        label: "Servings"
-      }
-      {
-        key: "user.profile.name"
-        label: "Name"
-      }
-      {
-        key: "user.username"
-        label: "Username"
-      }
-      {
-        key: "note"
-        label: "Note"
-      }
-      {
-        key: "user.profile.rating"
-        label: "Rating"
-        fn: (value) ->
-          console.log value
-          output = ""
-          i = 0
-          while i < value
-            output += "<i class='fa fa-star'>"
-            i++
-          Spacebars.SafeString(output)
-      }
-    ]
+
+    #Present different fields depending on if user owns meal
+    mealId = Session.get "mealId"
+    if mealId
+      ownsMeal = OfferedMeals.findOne(_id: mealId).userId is Meteor.userId()
+
+    if ownsMeal
+      fields: [
+        {
+          key: "approved"
+          label: "Approved"
+          fn: (value) ->
+            if value
+              Spacebars.SafeString("<i class='fa fa-check'>")
+            else
+              Spacebars.SafeString("<i class='fa fa-times'>")
+        }
+        {
+          key: "servings"
+          label: "Servings"
+        }
+        {
+          key: "user.profile.name"
+          label: "Name"
+        }
+        {
+          key: "user"
+          label: "Username"
+          fn: (user) ->
+
+            return Spacebars.SafeString("<a href=\"/profile/#{user._id}\">#{user.username}</a>")
+        }
+        {
+          key: "note"
+          label: "Note"
+        }
+        {
+          key: "user.profile.rating"
+          label: "Rating"
+          fn: (value) ->
+            console.log value
+            output = ""
+            i = 0
+            while i < value
+              output += "<i class='fa fa-star'>"
+              i++
+            Spacebars.SafeString(output)
+        }
+        {
+          key: "_id"
+          label: ""
+          fn: (value, object) ->
+            console.log object
+            if object.approved
+              Spacebars.SafeString("<button id=\"disapprove\" class=\"btn btn-default\" claimId=\"#{object._id}\">Disapprove</button>")
+            else
+              Spacebars.SafeString("<button id=\"approve\" class=\"btn btn-default\" claimId=\"#{object._id}\">Approve</button>")
+        }
+      ]
+    else
+      fields: [
+        {
+          key: "approved"
+          label: "Approved"
+          fn: (value) ->
+            if value
+              Spacebars.SafeString("<i class='fa fa-check'>")
+            else
+              Spacebars.SafeString("<i class='fa fa-times'>")
+        }
+        {
+          key: "servings"
+          label: "Servings"
+        }
+        {
+          key: "user.profile.name"
+          label: "Name"
+        }
+        {
+          key: "user"
+          label: "Username"
+          fn: (user) ->
+
+            return Spacebars.SafeString("<a href=\"/profile/#{user._id}\">#{user.username}</a>")
+        }
+        {
+          key: "note"
+          label: "Note"
+        }
+        {
+          key: "user.profile.rating"
+          label: "Rating"
+          fn: (value) ->
+            console.log value
+            output = ""
+            i = 0
+            while i < value
+              output += "<i class='fa fa-star'>"
+              i++
+            Spacebars.SafeString(output)
+        }
+      ]
 
   collection: ->
     mealId = Session.get "mealId"
@@ -69,10 +132,26 @@ Template.meal.helpers
     if mealId
       servings = OfferedMeals.findOne(_id: mealId).numOfServings
       claims = Claims.find
-        mealId: mealId
+        "meal._id": mealId
         approved: yes
       claims = claims.count()
+      console.log "[remainingServings] claims: ", claims
       return servings - claims
 
 
 Template.meal.events
+  "click #approve": (event) ->
+    claimId = $(event.currentTarget).attr("claimId")
+    Claims.update
+      _id: claimId
+    ,
+      $set:
+        approved: true
+
+  "click #disapprove": (event) ->
+    claimId = $(event.currentTarget).attr("claimId")
+    Claims.update
+      _id: claimId
+    ,
+      $set:
+        approved: false

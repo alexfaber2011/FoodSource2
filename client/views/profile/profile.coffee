@@ -41,6 +41,18 @@ Template.profile.helpers
             i++
           Spacebars.SafeString(output)
       }
+      {
+        key: "_id"
+        label: "Claims"
+        fn: (_id) ->
+          claim = Claims.findOne
+            "meal._id": _id
+          if claim
+            return Spacebars.SafeString("<a href=\"/meal/#{_id}\"><button class=\"btn btn-default\">View Claims</button></a>")
+          else
+            return ""
+
+      }
     ]
 
   collection: ->
