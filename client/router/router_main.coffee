@@ -1,18 +1,26 @@
+mustBeSignedIn = ->
+  if not Meteor.userId()
+    Router.go "home"
+
 Router.configure
   layoutTemplate: "layout"
 #  notFoundTemplate: "notfound"
 #  loadingTemplate: "loading"
 
+#For reference.  We're routing on the client side, so this isn't entirely secure, but it doesn't really matter much,
+# security comes from publishing data. Server side routing is available but not necessary here
+Router.onBeforeAction mustBeSignedIn,
+  except: [
+    "home"
+  ]
+
 Router.map ->
   @route "map",
     path: "/map"
-    #For reference.  We're routing on the client side, so this isn't entirely secure, but it doesn't really matter much,
-    # security comes from publishing data. Server side routing is available but not necessary here
     onBeforeAction: ->
-      if not Meteor.userId()
-        Router.go "home"
     data: ->
       Meteor.subscribe "RequestedMeals"
+      Meteor.subscribe "UserData"
 
   @route "home",
     path: "/"
@@ -25,5 +33,16 @@ Router.map ->
         Session.set "ownsPage", yes
       else
         Session.set "ownsPage", no
+      Session.set "userId", @params.id
     data: ->
       Meteor.subscribe "OfferedMeals"
+      Meteor.subscribe "UserData"
+
+  @route "meal",
+    path: "/meal/:mealId"
+    onBeforeAction: ->
+      Session.set "mealId", @params.mealId
+    data: ->
+      Meteor.subscribe "OfferedMeals"
+      Meteor.subscribe "Claims"
+

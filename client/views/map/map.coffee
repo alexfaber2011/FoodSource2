@@ -3,22 +3,14 @@ displayModal = (title) ->
   modalInfo =
     template: Template.modalInfo
     title: title
-#    modalDialogClass: "share-modal-dialog" #optional
-#    modalBodyClass: "share-modal-body" #optional
-#    modalFooterClass: "share-modal-footer" #optional
-#    buttons:
-#      cancel:
-#        class: "btn-danger"
-#        label: "Cancel"
-#      ok:
-#        closeModalOnClick: false # if this is false, dialog doesnt close automatically on click
-#        class: "btn-info"
-#        label: "Ok"
 
   rd = ReactiveModal.initDialog(modalInfo)
   rd.show()
 
 Template.map.rendered = ->
+  #send the user your condolences
+  alertify.error "Your map may look funky.  If it does, please refresh or resize your window.  We're working on this"
+
   Session.setDefault "isOfferedMarker", no
   tmpl = this
   VazcoMaps.init {}, ->
@@ -42,8 +34,6 @@ Template.map.rendered = ->
           click: (marker) ->
             Session.set "markerLng", accounting.toFixed(marker.getPosition().lng(), 10)
             Session.set "markerLat", accounting.toFixed(marker.getPosition().lat(), 10)
-#            Session.set "markerLng", accounting.toFixed(@.position.B, 6)
-#            Session.set "markerLat", accounting.toFixed(@.position.k, 6)
             Session.set "isOfferedMarker", yes
             displayModal "Offered Meals"
 
@@ -57,6 +47,7 @@ Template.map.rendered = ->
     window_height = $(window).height()
     $("#map-canvas2").height(window_height)
   )
+
 
 Template.map.helpers
 

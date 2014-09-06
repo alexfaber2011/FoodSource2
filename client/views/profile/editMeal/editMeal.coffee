@@ -17,6 +17,12 @@ Template.editMeal.helpers
   'createOfferedMealSuccess': ->
     return Session.get("createOfferedMealSuccess")
 
+  isAvailable: (_id) ->
+    if OfferedMeals.findOne(_id: _id).available
+      return "btn-success"
+    else
+      return "btn-default"
+
 Template.editMeal.events
   "submit #editOfferedMeal": (event) ->
     #Update everything, as much as you can
@@ -33,7 +39,7 @@ Template.editMeal.events
         Session.set "createOfferedMealSuccess", `undefined`
         throw new Meteor.Error(500)
       else
-        console.log geocoded
+#        console.log geocoded
         if geocoded.data.results.length is 0
           Session.set "createOfferedMealError", "Address is invalid"
           Session.set "createOfferedMealSuccess", `undefined`
@@ -44,7 +50,6 @@ Template.editMeal.events
             Session.set "createOfferedMealSuccess", `undefined`
             return
           ), 5000
-          console.log geocoded
           lat = accounting.toFixed(geocoded.data.results[0].geometry.location.lat, 10)
           lng = accounting.toFixed(geocoded.data.results[0].geometry.location.lng, 10)
           food =
@@ -54,11 +59,31 @@ Template.editMeal.events
             address: address
             description: $(event.target).find("#description").val()
             numOfServings: $(event.target).find("#numOfServings").val()
-            available: $("#available").prop("checked")
+            available: $("#available").is( ":checked" )
+          console.log '[$("#available").is( ":checked" )]', $("#available").is( ":checked" )
           OfferedMeals.update
             _id: Session.get("clickedProfileMeal")
           ,
             $set: food
+          ,
+            (error, numAffected) ->
+              if error
+                console.log error
+              else
+                console.log numAffected
       return
-  "click #available": ->
-    console.log $("#available").prop("checked")
+  "click [name='available']": ->
+    console.log $("#is-available").prop("checked", true)
+    console.log $("#is-not-available").prop("checked", true)
+#    console.log $('input[name="available"]').val()
+
+  "click #meal-available": ->
+    _id = $("#meal-available").attr("_id")
+    isAvailable = $("#meal-available").val()
+#    console.log _id
+#    console.log isAvailable
+    OfferedMeals.update
+      _id: _id
+    ,
+      $set:
+        available: not isAvailable

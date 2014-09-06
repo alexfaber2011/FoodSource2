@@ -1,0 +1,116 @@
+<template name="meal">
+    <div class="container top-container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h3 class="text-center">- MEAL -</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="portlet">
+                    <div class="title">
+                        Chef
+                    </div>
+                    <div class="content">
+                        <div id="user-picture">
+                            <i class="fa fa-user"></i>
+                        </div>
+                        <hr />
+                        {{#with chef}}
+                            <h4><a href="/profile/{{_id}}">{{profile.name}} ({{username}})</a> - {{showStars profile.rating}}</h4>
+                            <h5>{{profile.address}}</h5>
+                            <h5>Specialty: {{profile.specialty}}</h5>
+                        {{/with}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="portlet">
+                    <div class="title">
+                        Meal
+                    </div>
+                    <div class="content">
+                        {{#with meal}}
+                        <h1>{{name}}</h1>
+                        <hr />
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="col-md-7">
+                                    <p class="bold">{{address}}</p>
+                                    <p>{{description}}</p>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="portlet">
+                                        <div class="title">
+                                            Tasty Picture
+                                        </div>
+                                        <div class="content">
+                                            <div id="meal-image">
+                                                <i class="fa fa-bullseye"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 10px;">
+                            <h4 class="italic text-center">GET IT WHILE IT'S HOT</h4>
+                            <div class="col-md-6">
+                                <div class="portlet">
+                                    <div class="title">
+                                        Total Servings
+                                    </div>
+                                    <div class="content">
+                                        <p class="num-of-servings">
+                                            {{numOfServings}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="portlet">
+                                    <div class="title">
+                                        Remaining Servings
+                                    </div>
+                                    <div class="content">
+                                        <p class="num-of-servings">
+                                            {{remainingServings}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{/with}}
+                        <hr />
+                        <div class="row">
+                            <div class="col-sm-12">
+                                {{> reactiveTable collection=collection settings=settings}}
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row" style="margin-top: 10px;">
+                            <h4 class="italic text-center">Claim a serving or two for yourself</h4>
+                            {{> claim}}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row top-container">
+            {{#if ownsPage}}
+            <div class="col-sm-8 col-sm-offset-4">
+                <div class="portlet">
+                    <div class="title">
+                        Update Information
+                    </div>
+                    <div class="content">
+                        {{> editProfile}}
+                    </div>
+                </div>
+            </div>
+            {{/if}}
+        </div>
+    </div>
+
+</template>

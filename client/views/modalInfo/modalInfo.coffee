@@ -9,11 +9,17 @@ Template.modalInfo.helpers
       meals = OfferedMeals.find
         lat: lat
         lng: lng
-#      console.log meals.fetch()
+        available: yes
       return meals
 
+  userFullName: (_id) ->
+    user = Meteor.users.findOne(_id: _id)
+    Session.set "userRating", user.profile.rating
+    return user.profile.name
 
 
-
+  rating: ->
+    #A bit hackish...
+    Session.get "userRating"
 
 Template.modalInfo.events

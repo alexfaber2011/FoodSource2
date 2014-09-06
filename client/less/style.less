@@ -22,6 +22,10 @@ body{
   font-weight: bold;
 }
 
+.italic{
+  font-style: italic;
+}
+
 .circle{
 	border-radius: 50px;
 	width: 60px;
@@ -57,11 +61,6 @@ body{
   left: 50%;
   top: 0px;
   margin-left: -250px;
-//  border: 1px solid white;
-//  border-top: none;
-//  background-color: rgba(255,255,255,.3);
-//  border-bottom-left-radius: 15px;
-//  border-bottom-right-radius: 15px;
   padding: 10px;
 }
 
@@ -99,7 +98,6 @@ body{
     background-color: white;
   }
 }
-
 
 //********************************************************************************************************************//
 //**********                                        HOME STYLING                                            **********//
@@ -145,5 +143,31 @@ body{
 #user-picture{
   border: 1px solid @offWhite;
   text-align: center;
+  font-size: 72pt;
+}
+
+//********************************************************************************************************************//
+//**********                                        MEAL STYLING                                            **********//
+//********************************************************************************************************************//
+
+.meal-description{
+  position: relative;
+  float: left;
+}
+.meal-image-container{
+  width: 300px;
+  position: relative;
+  float: right;
+}
+
+#meal-image{
+  text-align: center;
+  font-size: 72pt;
+  border: 1px solid @offWhite;
+}
+
+.num-of-servings{
+  text-align: center;
+  font-weight: bold;
   font-size: 72pt;
 }

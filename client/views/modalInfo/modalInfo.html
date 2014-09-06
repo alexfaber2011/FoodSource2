@@ -2,11 +2,14 @@
     {{#each meals}}
         <div class="well">
             <h3>{{name}}</h3>
-            <p>{{userName}}</p>
+            <p><a href="/profile/{{userId}}">{{userFullName userId}} ({{userName}})</a> - {{showStars rating}}</p>
             <p>{{address}}</p>
             <hr />
             <p><span class="bold">Description</span><br />{{description}}</p>
             <p><span class="bold">Number of Servings: </span>{{numOfServings}}</p>
+            <div class="text-center">
+                <a href="/meal/{{_id}}"><button id="claim" class="btn btn-primary">Claim a Serving</button></a>
+            </div>
         </div>
     {{/each}}
 </template>

@@ -44,14 +44,22 @@ Template.profile.helpers
     ]
 
   collection: ->
-    OfferedMeals.find
-      userId: Meteor.userId()
+    userId = Session.get "userId" #set in router
+    if userId
+      OfferedMeals.find
+        userId: userId
 
   ownsPage: ->
     Session.get "ownsPage"
 
   user: ->
-    Meteor.user()
+    userId = Session.get "userId" #set in router
+    if userId
+      console.log userId
+      user = Meteor.users.findOne
+        _id: userId
+      console.log user
+      return user
 
 
 Template.profile.events
@@ -68,5 +76,5 @@ Template.profile.events
         title: "View Meal"
       }
     Session.set "clickedProfileMeal", @._id
-    rd = ReactiveModal.initDialog(mealModal);
+    rd = ReactiveModal.initDialog(mealModal)
     rd.show()

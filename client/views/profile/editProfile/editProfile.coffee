@@ -17,10 +17,9 @@ Template.editProfile.events
       _id: Meteor.userId()
     ,
       $set:
-        profile:
-            name: name
-            address: address
-            specialty: specialty
+        "profile.name": name
+        "profile.address": address
+        "profile.specialty": specialty
 
     alertify.success("Profile Successfully Updated")
 
