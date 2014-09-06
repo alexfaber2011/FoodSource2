@@ -17,6 +17,9 @@
                         </div>
                     </div>
                 </div>
+                <div class="top-container text-center">
+                    <a href="/map"><button class="btn btn-default">Return to Map</button></a>
+                </div>
             </div>
             <div class="col-sm-8">
                 <div class="portlet">
@@ -45,7 +48,7 @@
                         Meals
                     </div>
                     <div class="content">
-                        {{> reactiveTable collection=collection settings=settings}}
+                        {{> profileMeals}}
                     </div>
                 </div>
             </div>
@@ -58,7 +61,7 @@
                         Claims
                     </div>
                     <div class="content">
-                        {{> reactiveTable collection=claims settings=claimsSettings}}
+                        {{> profileClaims}}
                     </div>
                 </div>
             </div>
