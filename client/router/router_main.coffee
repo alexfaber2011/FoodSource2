@@ -12,8 +12,12 @@ Router.map ->
       if not Meteor.userId()
         Router.go "home"
     data: ->
-      Meteor.subscribe "OfferedMeals"
-#      Meteor.subscribe "RequestedMeals"
+      Meteor.subscribe "RequestedMeals"
 
   @route "home",
     path: "/"
+
+  @route "profile",
+    path: "/profile"
+    data: ->
+      Meteor.subscribe "OfferedMeals"

@@ -1,3 +1,7 @@
+@red: #de0b38;
+@darkRed: #77061e;
+@offWhite: #eaeaea;
+
 html, body{
   margin: 0px;
 }
@@ -71,21 +75,34 @@ body{
   width: 190px;
 }
 
-//#map-container{
-//  position: relative;
-//  min-height: 100% !important;
-//}
-//
-//.map-canvas{
-//  height: 100% !important;
-//}
+.top-container{
+  margin-top: 50px;
+}
+
+.portlet{
+  position: relative;
+  border: 1px solid @offWhite;
+  box-shadow: 0 5px 5px -7px black;
+  padding: 0px;
+
+  .title{
+    position: relative;
+    background-color: @offWhite;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+  }
+
+  .content{
+    padding: 10px;
+  }
+}
+
 
 //********************************************************************************************************************//
 //**********                                        HOME STYLING                                            **********//
 //********************************************************************************************************************//
-@red: #de0b38;
-@darkRed: #77061e;
-@offWhite: #eaeaea;
+
 
 .section{
   min-height: 100%;
@@ -118,4 +135,13 @@ body{
       }
     }
   }
+}
+
+//********************************************************************************************************************//
+//**********                                        Profile STYLING                                         **********//
+//********************************************************************************************************************//
+#user-picture{
+  border: 1px solid @offWhite;
+  text-align: center;
+  font-size: 72pt;
 }

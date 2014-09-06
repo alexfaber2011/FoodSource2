@@ -6,14 +6,14 @@ displayModal = (title) ->
 #    modalDialogClass: "share-modal-dialog" #optional
 #    modalBodyClass: "share-modal-body" #optional
 #    modalFooterClass: "share-modal-footer" #optional
-    buttons:
-      cancel:
-        class: "btn-danger"
-        label: "Cancel"
-      ok:
-        closeModalOnClick: false # if this is false, dialog doesnt close automatically on click
-        class: "btn-info"
-        label: "Ok"
+#    buttons:
+#      cancel:
+#        class: "btn-danger"
+#        label: "Cancel"
+#      ok:
+#        closeModalOnClick: false # if this is false, dialog doesnt close automatically on click
+#        class: "btn-info"
+#        label: "Ok"
 
   rd = ReactiveModal.initDialog(modalInfo)
   rd.show()
@@ -32,7 +32,7 @@ Template.map.rendered = ->
     )
 
     #Add offered meals
-    offeredMeals = OfferedMeals.find();
+    offeredMeals = OfferedMeals.find({available: yes});
     offeredMeals.observe
       added: (document) ->
         tmpl.newMap2.addMarker
@@ -46,25 +46,11 @@ Template.map.rendered = ->
 #            Session.set "markerLat", accounting.toFixed(@.position.k, 6)
             Session.set "isOfferedMarker", yes
             displayModal "Offered Meals"
-						
-    #Add requested meals
-    requestedMeals = RequestedMeals.find();
-    requestedMeals.observe
-      added: (document) ->
-        tmpl.newMap2.addMarker
-          icon: 'fork.png'
-          lat: document.lat
-          lng: document.lng
-          click: ->
-            Session.set "markerLng", (@.position.B).toFixed(2)
-            Session.set "markerLat", (@.position.k).toFixed(2)
-            Session.set "isRequestedMarker", yes
-            displayModal "Requested Meals"
-
 
   #Size the map properly
   window_height = $(window).height()
   $("#map-canvas2").height(window_height)
+
 
   #Resize the map when the window resizes as well
   $(window).resize(->

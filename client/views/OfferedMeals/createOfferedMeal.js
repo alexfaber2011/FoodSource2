@@ -45,7 +45,10 @@ Template.createOfferedMeal.events({
                             userId: Meteor.userId(),
                             userName: userName,
                             description: $(event.target).find("#description").val(),
-                            numOfServings: $(event.target).find("#numOfServings").val()
+                            numOfServings: $(event.target).find("#numOfServings").val(),
+                            rating: 0,
+                            numOfVotes: 0,
+                            available: true
                         };
 //                        console.log(food);
                         OfferedMeals.insert(food);

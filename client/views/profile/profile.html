@@ -1,0 +1,45 @@
+<template name="profile">
+    <div class="container top-container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h3 class="text-center">- PROFILE -</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="portlet">
+                    <div class="title">
+                        Picture
+                    </div>
+                    <div class="content">
+                        <div id="user-picture">
+                            <i class="fa fa-user"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="portlet">
+                    <div class="title">
+                        Information
+                    </div>
+                    <div class="content">
+                        <h1>Alex Faber (alex)
+                            <span style="text-align: right !important; float: right;">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-o"></i>
+                            </span>
+                        </h1>
+                        <hr />
+                        <h2>20 North Broom Street</h2>
+                        <h3>Madison, WI 53703</h3>
+                        {{> reactiveTable collection=collection settings=settings}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
