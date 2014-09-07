@@ -130,13 +130,28 @@ Template.meal.helpers
   remainingServings: ->
     mealId = Session.get "mealId"
     if mealId
-      servings = OfferedMeals.findOne(_id: mealId).numOfServings
+      servings = Number(OfferedMeals.findOne(_id: mealId).numOfServings)
       claims = Claims.find
         "meal._id": mealId
         approved: yes
-      claims = claims.count()
-      console.log "[remainingServings] claims: ", claims
-      return servings - claims
+      claimedServings = 0
+      for claim in claims.fetch()
+        claimedServings += claim.servings
+      console.log "[remainingServings] claimedServings: ", claimedServings
+      return servings - claimedServings
+
+  disable: ->
+    claim = Claims.findOne
+      "user._id": Meteor.userId()
+      approved: yes
+#    console.log claim
+    if claim
+      console.log "not disabling"
+      return ""
+    else
+      console.log "disabling"
+      return "disabled"
+
 
 
 Template.meal.events
@@ -155,3 +170,19 @@ Template.meal.events
     ,
       $set:
         approved: false
+
+  "click #claim": ->
+    claim =
+      template: Template.claim
+      title: "Claim a meal"
+    rd = ReactiveModal.initDialog(claim)
+    rd.show()
+    return
+
+  "click #review": ->
+    review =
+      template: Template.review
+      title: "Leave a Review"
+    rd = ReactiveModal.initDialog(review)
+    rd.show()
+    return

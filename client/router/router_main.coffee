@@ -47,4 +47,5 @@ Router.map ->
       Meteor.subscribe "OfferedMeals"
       Meteor.subscribe "Claims"
       Meteor.subscribe "UserData"
+      Meteor.subscribe "Reviews"
 

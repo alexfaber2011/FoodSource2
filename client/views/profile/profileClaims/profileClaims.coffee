@@ -1,4 +1,5 @@
 Template.profileClaims.rendered = ->
+  $('.reactive-table tr').css("cursor", "pointer")
 
 Template.profileClaims.helpers
   claims: ->
@@ -10,7 +11,7 @@ Template.profileClaims.helpers
     showFilter: yes
     showNavigation: yes
     useFontAwesome: yes
-    group: "claims"
+    ownsPage = Session.get "ownsPage"
     fields: [
       {
         key: "approved"
@@ -34,6 +35,9 @@ Template.profileClaims.helpers
         label: "Address"
       }
     ]
+    group: "claims"
 
 
 Template.profileClaims.events
+  "click .reactive-table tr": ->
+    Router.go("/meal/#{@.meal._id}")

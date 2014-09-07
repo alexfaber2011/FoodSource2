@@ -15,3 +15,7 @@ Meteor.publish('UserData', function() {
 Meteor.publish('Claims', function(){
    return Claims.find({});
 });
+
+Meteor.publish('Reviews', function(){
+    return Reviews.find({});
+});
